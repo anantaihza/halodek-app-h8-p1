@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>User</title>
+  <title>Admin</title>
 </head>
 <body>
   <div class="navbar bg-base-100 container mx-auto px-36">
@@ -14,18 +14,21 @@
     </div>
     <div class="flex-none">
       <div class="dropdown dropdown-end">
+        <h4><%= user.username %></h4>
+      </div>
+      <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
             <img
               alt="Tailwind CSS Navbar component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
           </div>
         </div>
         <ul
           tabindex="0"
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <li>
-            <a href="/user/profile" class="justify-between">
+            <a href="/admin/profile" class="justify-between">
               Profile
               <span class="badge">New</span>
             </a>
@@ -110,21 +113,20 @@
       </table>
     </div>
   </div>
-  <div>
+  <div class="container mx-auto px-36">
     <canvas id="myChart"></canvas>
   </div>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    const Chart = require("chart.js/auto")
     const ctx = document.getElementById('myChart');
   
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: <%- JSON.stringify(labels) %>,
         datasets: [{
           label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          data: <%- JSON.stringify(values) %>,
           borderWidth: 1
         }]
       },

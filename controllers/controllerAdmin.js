@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Drug, Disease, Profile } = require("../models/index");
+const { Drug, Disease, Profile, User } = require("../models/index");
 
 class ControllerUser {
   static async renderAdmin(req, res) {
@@ -24,8 +24,21 @@ class ControllerUser {
 
       const drugs = await Drug.findAll(option);
 
-      // res.send(drugs)
-      res.render("./admin/admin", { drugs, deleteName });
+      let diseases = await Disease.findAll({
+        include: {
+          model: Drug
+        }
+      });
+
+      let labels = []
+      let values = []
+      for (let i = 0; i < diseases.length; i++) {
+        labels.push(diseases[i].name)
+        values.push(diseases[i].Drugs.length)
+      }
+      const user = await User.findByPk(req.session.user.id)
+
+      res.render("./admin/admin", { drugs, deleteName, labels, values, user });
     } catch (error) {
       console.log(error)
       res.send(error);
@@ -38,7 +51,8 @@ class ControllerUser {
         return res.redirect("/user")
       }
       const diseases = await Disease.findAll()
-      res.render("./admin/add-drug", { diseases })
+      const user = await User.findByPk(req.session.user.id)
+      res.render("./admin/add-drug", { diseases, user })
     } catch (error) {
       res.send(error);
     }
@@ -66,8 +80,9 @@ class ControllerUser {
           }
         }
       })
+      const user = await User.findByPk(req.session.user.id)
       
-      res.render("./user/profile", { profile });
+      res.render("./user/profile", { profile, user });
     } catch (error) {
       res.send(error);
     }
@@ -96,7 +111,8 @@ class ControllerUser {
       const { DrugId } = req.params;
       const drug = await Drug.findByPk(DrugId);
       const diseases = await Disease.findAll(); 
-      res.render("./admin/edit-drug", { drug, diseases });
+      const user = await User.findByPk(req.session.user.id)
+      res.render("./admin/edit-drug", { drug, diseases, user });
     } catch (error) {
       res.send(error);
     }

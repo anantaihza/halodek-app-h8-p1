@@ -15,7 +15,7 @@ module.exports = {
     let symptoms = [
       // Flu
       {
-        name: "Demam tinggi (> 38Â°C)",
+        name: "Demam tinggi (> 38 °C)",
       },
       {
         name: "Pilek",

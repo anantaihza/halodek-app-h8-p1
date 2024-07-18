@@ -1,5 +1,5 @@
-const { Op, where } = require("sequelize");
-const { Symptom, Record, RecordSymptom, Disease, Drug, Profile } = require("../models/index")
+const { Op } = require("sequelize");
+const { Symptom, Record, RecordSymptom, Disease, Drug, Profile, User } = require("../models/index")
 const formatDate = require("../helpers/formatDate");
 // const formatCurrency = require("../helpers/formatCurrency");
 
@@ -10,8 +10,10 @@ class ControllerUser {
         return res.redirect("/admin")
       }
       const records = await Record.getRecords()
+      const user = await User.findByPk(req.session.user.id)
+      // res.send(user)
       
-      res.render("./user/user", { records });
+      res.render("./user/user", { records, user });
     } catch (error) {
       res.send(error);
     }
@@ -23,7 +25,8 @@ class ControllerUser {
         return res.redirect("/admin")
       }
       const symptoms = await Symptom.findAll();
-      res.render("./user/checkup", { symptoms });
+      const user = await User.findByPk(req.session.user.id)
+      res.render("./user/checkup", { symptoms, user });
     } catch (error) {
       res.send(error);
     }
@@ -119,8 +122,9 @@ class ControllerUser {
           }
         }
       })
+      const user = await User.findByPk(req.session.user.id)
       
-      res.render("./user/profile", { profile });
+      res.render("./user/profile", { profile, user });
     } catch (error) {
       res.send(error);
     }
@@ -158,9 +162,10 @@ class ControllerUser {
           }
         }
       })
+      const user = await User.findByPk(req.session.user.id)
 
       // res.send(record)
-      res.render("./user/detail-record", { record, disease, formatDate });
+      res.render("./user/detail-record", { record, disease, formatDate, user });
     } catch (error) {
       res.send(error);
     }

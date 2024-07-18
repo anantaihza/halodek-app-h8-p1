@@ -35,7 +35,7 @@ class ControllerAuth {
         if (isValidPassword) {
           req.session.user = {
             id: user.id,
-            name: user.name,
+            name: user.username,
             role: user.role
           }
 
