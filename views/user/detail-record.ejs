@@ -30,15 +30,50 @@
               <span class="badge">New</span>
             </a>
           </li>
-          <li><a>Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="container mx-auto px-36">
-    <h1 class="font-black text-4xl my-20">Record Tanggal: 30 Desember 2021</h1>
+    <h1 class="font-black text-4xl mt-20"><%= disease.name %></h1>
+    <p class="font-bold mb-10">Record Tanggal: <%= formatDate(record.createdAt) %></p>
+    
+    <div class="card bg-blue-500 w-full shadow-xl">
+      <div class="card-body text-white">
+        <h2 class="card-title">Description:</h2>
+        <p><%= disease.description %></p>
+      </div>
+    </div>
 
+    <div class="overflow-x-auto mt-20">
+      <table class="table">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+           <% disease.Drugs.forEach((el, i) => { %>
+            <tr>
+              <th><%= i + 1 %></th>
+              <td><%= el.name %></td>
+              <td><%= el.category %></td>
+              <td><%= el.formatCurrency %></td>
+            </tr>
+            
+           <% }) %>
+          
+        </tbody>
+      </table>
+    </div>
+    
     
   </div>
 </body>

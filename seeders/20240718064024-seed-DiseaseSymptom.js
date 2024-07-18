@@ -12,70 +12,85 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    let symptoms = [
+    let diseaseSymptoms = [
       // Flu
       {
-        name: "Demam tinggi (> 38Â°C)",
+        DiseaseId: 1,
+        SymptomId: 1
       },
       {
-        name: "Pilek",
+        DiseaseId: 1,
+        SymptomId: 2
       },
       {
-        name: "Batuk kering",
-      },
-      
-      // Sakit Kepala
-      {
-        name: "Nyeri kepala sebelah",
-      },
-      {
-        name: "Tegang pada leher atau bahu",
-      },
-      {
-        name: "Mual",
+        DiseaseId: 1,
+        SymptomId: 3
       },
 
-      // Menigitis
+      // Sakit Kepala
       {
-        name: "Demam tinggi",
+        DiseaseId: 2,
+        SymptomId: 4
       },
       {
-        name: "Muntah berulang",
+        DiseaseId: 2,
+        SymptomId: 5
       },
       {
-        name: "Ruam kulit",
+        DiseaseId: 2,
+        SymptomId: 6
+      },
+
+      // Meningitis
+      {
+        DiseaseId: 3,
+        SymptomId: 7
+      },
+      {
+        DiseaseId: 3,
+        SymptomId: 8
+      },
+      {
+        DiseaseId: 3,
+        SymptomId: 9
       },
 
       // Asma
       {
-        name: "Sesak napas",
+        DiseaseId: 4,
+        SymptomId: 10
       },
       {
-        name: "Dada terasa berat",
+        DiseaseId: 4,
+        SymptomId: 11
       },
       {
-        name: "Suara napas seperti siulan",
+        DiseaseId: 4,
+        SymptomId: 12
       },
 
       // Kanker
       {
-        name: "Kehilangan berat badan tanpa sebab",
+        DiseaseId: 5,
+        SymptomId: 13
       },
       {
-        name: "Nyeri yang tidak kunjung sembuh",
+        DiseaseId: 5,
+        SymptomId: 14
       },
       {
-        name: "Pendarahan yang tidak normal",
-      }
+        DiseaseId: 5,
+        SymptomId: 15
+      },
     ];
 
-    symptoms = symptoms.map(data => {
+    diseaseSymptoms = diseaseSymptoms.map(data => {
       data.createdAt = new Date();
       data.updatedAt = new Date();
       return data;
     });
 
-    await queryInterface.bulkInsert("Symptoms", symptoms, {})
+    await queryInterface.bulkInsert("DiseaseSymptoms", diseaseSymptoms, {});
   },
 
   async down (queryInterface, Sequelize) {
@@ -85,6 +100,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("Symptoms", null, {})
+    await queryInterface.bulkDelete("DiseaseSymptoms", null, {})
   }
 };

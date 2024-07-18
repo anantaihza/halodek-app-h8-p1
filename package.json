@@ -20,9 +20,13 @@
     "seedSymptom": "npx sequelize seed:create --name seed-Symptom",
     "seedDrug": "npx sequelize seed:create --name seed-Drug",
     "seedDisease": "npx sequelize seed:create --name seed-Disease",
+    "seedDiseaseSymptom": "npx sequelize seed:create --name seed-DiseaseSymptom",
+    "seedProfile": "npx sequelize seed:create --name seed-Profile",
     "migrate": "npx sequelize db:migrate",
+    "seeding": "npx sequelize db:seed:all",
     "dropDB": "npx sequelize db:drop",
-    "createDB": "npx sequelize db:create"
+    "createDB": "npx sequelize db:create",
+    "resetDB": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +36,7 @@
     "bcryptjs": "^2.4.3",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "pg": "^8.12.0",
     "sequelize": "^6.37.3"
   },

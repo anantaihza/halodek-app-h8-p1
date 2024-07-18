@@ -14,10 +14,24 @@ module.exports = (sequelize, DataTypes) => {
       Record.belongsTo(models.User);
       Record.belongsToMany(models.Symptom, { through: 'RecordSymptoms' });
     }
+
+    static async getRecords() {
+      try {
+        return await Record.findAll({
+          include: {
+            model: sequelize.models.Symptom
+          }
+        });
+      } catch (error) {
+        throw error;
+      }
+    }
   }
   Record.init({
-    name: DataTypes.STRING,
-    UserId: DataTypes.Integer
+    name: {
+      type: DataTypes.STRING
+    },
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Record',

@@ -30,7 +30,7 @@
               <span class="badge">New</span>
             </a>
           </li>
-          <li><a>Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -54,23 +54,22 @@
         </thead>
         <tbody>
           <!-- row 1 -->
-          <tr>
-            <th>1</th>
-            <td>Flu</td>
-            <td>Demam, Batuk, Pilek</td>
-            <td>
-              <a href="/user/detail/1" class="btn btn-outline btn-primary rounded-full">Detail</a>
-            </td>
-          </tr>
-          <!-- row 2 -->
-          <tr>
-            <th>2</th>
-            <td>Alergi</td>
-            <td>Gatal, Bersin</td>
-            <td>
-              <a href="/user/detail/1" class="btn btn-outline btn-primary rounded-full">Detail</a>
-            </td>
-          </tr>
+           <% records.forEach((el, i) => { %>
+            <tr>
+              <th><%= i + 1 %></th>
+              <td><%= el.name %></td>
+              <td>
+                <ul>
+                  <% el.Symptoms.forEach(sym => { %>
+                    <li><%= sym.name %></li>
+                  <% }) %>
+                </ul>
+              </td>
+              <td>
+                <a href="/user/detail/<%= el.id %>" class="btn btn-outline btn-primary rounded-full">Detail</a>
+              </td>
+            </tr>
+           <% }) %>
         </tbody>
       </table>
     </div>

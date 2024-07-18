@@ -1,5 +1,7 @@
 'use strict';
 
+const bcrypt = require("bcryptjs");
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -12,6 +14,33 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+   let users = [
+    {
+      username: "admin123",
+      email: "admin123@gmail.com",
+      password: "12345",
+      role: "Admin"
+    },
+    {
+      username: "user1",
+      email: "user1@gmail.com",
+      password: "23456",
+      role: "User"
+    },
+   ];
+
+   users = users.map(data => {
+    const salt = bcrypt.genSaltSync(8);
+    const hash = bcrypt.hashSync(data.password, salt);
+
+    data.password = hash;
+    
+    data.createdAt = new Date()
+    data.updatedAt = new Date()
+    return data;
+   });
+
+   await queryInterface.bulkInsert("Users", users, {})
   },
 
   async down (queryInterface, Sequelize) {
@@ -21,5 +50,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete("Users", null, {})
   }
 };

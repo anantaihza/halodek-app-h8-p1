@@ -30,7 +30,7 @@
               <span class="badge">New</span>
             </a>
           </li>
-          <li><a>Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -39,24 +39,42 @@
   <div class="container mx-auto px-36">
     <h1 class="font-black text-4xl my-20">Tambah Obat</h1>
 
-    <form action="" method="post">
+    <form action="/admin/obat/add" method="post">
       <label class="form-control w-full max-w-xs">
         <div class="label">
           <span class="label-text">Name</span>
         </div>
         <input type="text" name="name" class="input input-bordered w-full max-w-xs" />
       </label>
+
       <label class="form-control w-full max-w-xs">
         <div class="label">
           <span class="label-text">Category</span>
         </div>
-        <input type="text" name="category" class="input input-bordered w-full max-w-xs" />
+        <select class="select select-bordered" name="category">
+          <option disabled selected>Pilih Kategori</option>
+          <option value="Obat Bebas">Obat Bebas</option>
+          <option value="Obat Resep Dokter">Obat Resep Dokter</option>
+        </select>
       </label>
+
       <label class="form-control w-full max-w-xs">
         <div class="label">
           <span class="label-text">Price</span>
         </div>
         <input type="text" name="price" class="input input-bordered w-full max-w-xs" />
+      </label>
+
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Penyakit yang tersedia</span>
+        </div>
+        <select class="select select-bordered" name="DiseaseId">
+          <option disabled selected>Pilih Penyakit</option>
+          <% diseases.forEach(el => { %>
+            <option value="<%= el.id %>"><%= el.name %></option>
+          <% }) %>
+        </select>
       </label>
 
       <button type="submit" class="btn btn-primary mt-10">Tambah</button>

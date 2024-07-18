@@ -30,7 +30,7 @@
               <span class="badge">New</span>
             </a>
           </li>
-          <li><a>Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -39,7 +39,19 @@
   <div class="container mx-auto px-36">
     <h1 class="font-black text-4xl my-20">Tambah Checkup</h1>
 
-    
+    <p>Mohon tuliskan gejala apa saja yang anda rasakan</p>
+    <form action="/user/checkup" method="post" class="my-10">
+      <div class="form-control w-36">
+        <% symptoms.forEach(el => { %>
+          <label class="label cursor-pointer justify-start gap-3">
+            <input type="checkbox" class="checkbox" name="SymptomId" value="<%= el.id %>" />
+            <span class="label-text"><%= el.name %></span>
+          </label>
+        <% }) %>
+
+        <button type="submit" class="btn btn-primary">Buat</button>
+      </div>
+    </form>
   </div>
 </body>
 </html>

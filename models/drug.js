@@ -13,6 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Drug.belongsTo(models.Disease);
     }
+
+    get formatCurrency() {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR"
+      }).format(this.price);
+    }
   }
   Drug.init({
     name: DataTypes.STRING,

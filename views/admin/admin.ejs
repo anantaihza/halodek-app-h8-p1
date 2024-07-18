@@ -30,7 +30,7 @@
               <span class="badge">New</span>
             </a>
           </li>
-          <li><a>Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -56,17 +56,20 @@
         </thead>
         <tbody>
           <!-- row 1 -->
-          <tr>
-            <th>1</th>
-            <td>Panadol</td>
-            <td>Obat keras</td>
-            <td>Rp.20.000</td>
-            <td>Pusing</td>
-            <td>
-              <a href="/admin/obat/edit/1" class="btn btn-outline btn-primary rounded-full">Edit</a>
-              <a href="/admin/obat/delete/1" class="btn btn-outline btn-primary rounded-full">Delete</a>
-            </td>
-          </tr>
+          <% drugs.forEach((el, i) => { %>
+            <tr>
+              <th><%= i + 1 %></th>
+              <td><%= el.name %></td>
+              <td><%= el.category %></td>
+              <td><%= el.formatCurrency %></td>
+              <td><%= el.Disease.name %></td>
+              <td>
+                <a href="/admin/obat/edit/<%= el.id %>" class="btn btn-outline btn-primary rounded-full">Edit</a>
+                <a href="/admin/obat/delete/<%= el.id %>" class="btn btn-outline btn-primary rounded-full">Delete</a>
+              </td>
+            </tr>
+           
+          <% }) %>
           
         </tbody>
       </table>
