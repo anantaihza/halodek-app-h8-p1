@@ -21,6 +21,7 @@ router.use((req, res, next) => {
   }
 });
 
+
 router.use("/user", routerUser)
 router.use("/admin", routerAdmin)
 

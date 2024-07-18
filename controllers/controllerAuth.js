@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { User, Profile } = require("../models/index");
+const { User, Profile, sequelize } = require("../models/index");
 const bcrypt = require("bcryptjs")
 
 class ControllerAuth {
@@ -13,7 +13,8 @@ class ControllerAuth {
 
   static async login(req, res) {
     try {
-      res.render("login");
+      const { error } = req.query;
+      res.render("login", { error });
     } catch (error) {
       res.send(error);
     }
@@ -59,20 +60,25 @@ class ControllerAuth {
 
   static async register(req, res) {
     try {
-      res.render("register");
+      const { error } = req.query
+      res.render("register", { error });
     } catch (error) {
       res.send(error);
     }
   }
 
   static async handlerRegister(req, res) {
+    const { username, email, password, firstName, lastName, gender, phoneNumber, birthDate } = req.body;
+    const t = await sequelize.transaction();
+
     try {
-      const { username, email, password, firstName, lastName, gender, phoneNumber, birthDate } = req.body;
-      // sementara
-      let user = await User.create({ username, email, password });
-      // await User.create({ username, email, password });
-      
-      // sementara
+      const userValidation = User.build({ username, email, password });
+      const profileValidation = Profile.build({ firstName, lastName, gender, phoneNumber, birthDate });
+      await userValidation.validate();
+      await profileValidation.validate();
+
+      let user = await User.create({ username, email, password }, { transaction: t });
+
       await Profile.create({
         firstName,
         lastName,
@@ -80,11 +86,29 @@ class ControllerAuth {
         phoneNumber,
         birthDate,
         UserId: user.id
-      });
+      }, { transaction: t });
+
+      await t.commit();
       
+
       res.redirect("/login");
     } catch (error) {
-      res.send(error);
+
+      await t.rollback();
+
+      switch (error.name) {
+        case "SequelizeValidationError":
+          let err = error.errors.map(data => {
+            return data.message;
+          });
+          // res.send(err)
+          res.redirect(`/register?error=${err}`)
+          break;
+      
+        default:
+          res.send(error);
+          break;
+      }
     }
   }
   

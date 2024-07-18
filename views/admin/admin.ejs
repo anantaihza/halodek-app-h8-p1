@@ -37,11 +37,46 @@
   </div>
 
   <div class="container mx-auto px-36">
-    <h1 class="font-black text-4xl my-20">List Obat</h1>
+    <h1 class="font-black text-4xl mt-20 mb-10">List Obat</h1>
 
     <a href="/admin/obat/add" class="btn btn-primary">Tambah Obat</a>
 
-    <div class="overflow-x-auto mt-20">
+    <% if (deleteName) { %>
+      <div role="alert" class="alert alert-success mt-20">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 shrink-0 stroke-current"
+          fill="none"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Delete <b><%= deleteName %></b> success!</span>
+      </div>
+    <% } %>
+
+    <form action="/admin" method="get" class="flex my-10 justify-end gap-4">
+      <label class="input input-bordered flex items-center gap-2">
+        <input type="text" class="grow" placeholder="Search" name="search" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          class="h-4 w-4 opacity-70">
+          <path
+            fill-rule="evenodd"
+            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+            clip-rule="evenodd" />
+        </svg>
+      </label>
+
+      <button class="btn btn-outline btn-warning">Search</button>
+    </form>
+
+    <div class="overflow-x-auto mb-20">
       <table class="table">
         <!-- head -->
         <thead>
@@ -75,5 +110,32 @@
       </table>
     </div>
   </div>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+  <script>
+    const Chart = require("chart.js/auto")
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
