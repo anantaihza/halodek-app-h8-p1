@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Profile</title>
+</head>
+<body>
+  <div class="navbar bg-base-100 container mx-auto px-36">
+    <div class="flex-1">
+      <a href="/user" class="btn btn-ghost text-xl">Kesehatan</a>
+    </div>
+    <div class="flex-none">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img
+              alt="Tailwind CSS Navbar component"
+              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          </div>
+        </div>
+        <ul
+          tabindex="0"
+          class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          <li>
+            <a class="justify-between">
+              Profile
+              <span class="badge">New</span>
+            </a>
+          </li>
+          <li><a>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-36">
+    <h1 class="font-black text-4xl my-20">Profile</h1>
+
+    <form action="/user/profile" method="post">
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">First Name</span>
+        </div>
+        <input type="text" name="firstName" class="input input-bordered w-full max-w-xs" value="" />
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Last Name</span>
+        </div>
+        <input type="text" name="lastName" class="input input-bordered w-full max-w-xs" value="" />
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Gender</span>
+        </div>
+        <input type="text" name="gender" class="input input-bordered w-full max-w-xs" value="" />
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Phone Number</span>
+        </div>
+        <input type="text" name="phoneNumber" class="input input-bordered w-full max-w-xs" value="" />
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Birth Date</span>
+        </div>
+        <input type="text" name="birthDate" class="input input-bordered w-full max-w-xs" value="" />
+      </label>
+
+      <button type="submit" class="btn btn-primary mt-10">Update</button>
+    </form>
+  </div>
+</body>
+</html>

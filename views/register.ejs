@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Register</title>
+</head>
+<body>
+  <div class="navbar bg-base-100 fixed">
+    <div class="flex-1">
+      <a href="/" class="btn btn-ghost text-xl">Kesehatan</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-36 h-[100vh] flex justify-center items-center content-center">
+    <div class="card bg-base-100 w-96 shadow-xl">
+      <div class="card-body">
+        <h2 class="card-title">Register</h2>
+        
+        <form action="/register" method="post">
+          <label class="form-control w-full max-w-xs">
+            <div class="label">
+              <span class="label-text">Username</span>
+            </div>
+            <input type="text" name="username" class="input input-bordered w-full max-w-xs" />
+          </label>
+          <label class="form-control w-full max-w-xs">
+            <div class="label">
+              <span class="label-text">Email</span>
+            </div>
+            <input type="text" name="email" class="input input-bordered w-full max-w-xs" />
+          </label>
+          <label class="form-control w-full max-w-xs">
+            <div class="label">
+              <span class="label-text">Password</span>
+            </div>
+            <input type="password" name="password" class="input input-bordered w-full max-w-xs" />
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-block mt-10">Login</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>

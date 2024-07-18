@@ -1,0 +1,41 @@
+{
+  "name": "pair-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch app.js",
+    "createUser": "npx sequelize model:create --name User --attributes username:string,email:string,password:string,role:string",
+    "createProfile": "npx sequelize model:create --name Profile --attributes firstName:string,lastName:string,gender:string,phoneNumber:string,birthDate:date",
+    "add-fk-Profile": "npx sequelize migration:create --name add-fk-profile",
+    "createSymptom": "npx sequelize model:create --name Symptom --attributes name:string",
+    "createDrug": "npx sequelize model:create --name Drug --attributes name:string,category:string,price:integer",
+    "createDisease": "npx sequelize model:create --name Disease --attributes name:string,description:text,level:integer",
+    "add-fk-Drug": "npx sequelize migration:create --name add-fk-drug",
+    "createRecord": "npx sequelize model:create --name Record --attributes name:string",
+    "add-fk-Record": "npx sequelize migration:create --name add-fk-Record",
+    "createRecordSymptom": "npx sequelize model:create --name RecordSymptom --attributes RecordId:integer,SymptomId:integer",
+    "createDiseaseSymptom": "npx sequelize model:create --name DiseaseSymptom --attributes DiseaseId:integer,SymptomId:integer",
+    "seedUser": "npx sequelize seed:create --name seed-User",
+    "seedSymptom": "npx sequelize seed:create --name seed-Symptom",
+    "seedDrug": "npx sequelize seed:create --name seed-Drug",
+    "seedDisease": "npx sequelize seed:create --name seed-Disease",
+    "migrate": "npx sequelize db:migrate",
+    "dropDB": "npx sequelize db:drop",
+    "createDB": "npx sequelize db:create"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  }
+}
