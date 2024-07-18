@@ -10,7 +10,7 @@
 <body>
   <div class="navbar bg-base-100 container mx-auto px-36">
     <div class="flex-1">
-      <a href="/user" class="btn btn-ghost text-xl">Kesehatan</a>
+      <a href="/user" class="btn btn-ghost text-xl">Halodek</a>
     </div>
     <div class="flex-none">
       <div class="dropdown dropdown-end">
@@ -44,7 +44,7 @@
 
     <p>Mohon tuliskan gejala apa saja yang anda rasakan</p>
     <form action="/user/checkup" method="post" class="my-10">
-      <div class="form-control w-36">
+      <div class="form-control w-46">
         <% symptoms.forEach(el => { %>
           <label class="label cursor-pointer justify-start gap-3">
             <input type="checkbox" class="checkbox" name="SymptomId" value="<%= el.id %>" />
@@ -52,7 +52,7 @@
           </label>
         <% }) %>
 
-        <button type="submit" class="btn btn-primary">Buat</button>
+        <button type="submit" class="btn btn-primary mt-10">Buat</button>
       </div>
     </form>
   </div>
