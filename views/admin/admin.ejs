@@ -42,7 +42,7 @@
   <div class="container mx-auto px-36">
     <h1 class="font-black text-4xl mt-20 mb-10">List Obat</h1>
 
-    <a href="/admin/obat/add" class="btn btn-primary">Tambah Obat</a>
+    <a href="/admin/obat/add" class="btn btn-primary rounded-full">Tambah Obat</a>
 
     <% if (deleteName) { %>
       <div role="alert" class="alert alert-success mt-20">
@@ -62,7 +62,7 @@
     <% } %>
 
     <form action="/admin" method="get" class="flex my-10 justify-end gap-4">
-      <label class="input input-bordered flex items-center gap-2">
+      <label class="input input-bordered flex items-center gap-2 rounded-full">
         <input type="text" class="grow" placeholder="Search" name="search" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@
         </svg>
       </label>
 
-      <button class="btn btn-outline btn-warning">Search</button>
+      <button class="btn rounded-full btn-warning text-white">Search</button>
     </form>
 
     <div class="overflow-x-auto mb-20">
@@ -102,8 +102,8 @@
               <td><%= el.formatCurrency %></td>
               <td><%= el.Disease.name %></td>
               <td>
-                <a href="/admin/obat/edit/<%= el.id %>" class="btn btn-outline btn-primary rounded-full">Edit</a>
-                <a href="/admin/obat/delete/<%= el.id %>" class="btn btn-outline btn-primary rounded-full">Delete</a>
+                <a href="/admin/obat/edit/<%= el.id %>" class="btn btn-outline btn-warning rounded-full">Edit</a>
+                <a href="/admin/obat/delete/<%= el.id %>" class="btn btn-outline btn-error rounded-full">Delete</a>
               </td>
             </tr>
            
@@ -113,7 +113,8 @@
       </table>
     </div>
   </div>
-  <div class="container mx-auto px-36">
+  <div class="container mx-auto px-36 my-20">
+    <h1 class="font-bold text-4xl">Chart</h1>
     <canvas id="myChart"></canvas>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -125,7 +126,7 @@
       data: {
         labels: <%- JSON.stringify(labels) %>,
         datasets: [{
-          label: '# of Votes',
+          label: '# of Count',
           data: <%- JSON.stringify(values) %>,
           borderWidth: 1
         }]

@@ -9,7 +9,9 @@ class ControllerUser {
       if (req.session.user.role !== "User") {
         return res.redirect("/admin")
       }
-      const records = await Record.getRecords()
+      // console.log(req.session.user.id, "user id")
+      const records = await Record.getRecords(req.session.user.id)
+      // console.log(records, "---record")
       const user = await User.findByPk(req.session.user.id)
       // res.send(user)
       

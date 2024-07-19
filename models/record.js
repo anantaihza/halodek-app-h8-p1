@@ -1,6 +1,7 @@
 'use strict';
 const {
-  Model
+  Model,
+  Op
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Record extends Model {
@@ -15,11 +16,16 @@ module.exports = (sequelize, DataTypes) => {
       Record.belongsToMany(models.Symptom, { through: 'RecordSymptoms' });
     }
 
-    static async getRecords() {
+    static async getRecords(UserId) {
       try {
         return await Record.findAll({
           include: {
             model: sequelize.models.Symptom
+          },
+          where: {
+            UserId: {
+              [Op.eq]: UserId
+            }
           }
         });
       } catch (error) {
